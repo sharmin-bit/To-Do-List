@@ -1,0 +1,47 @@
+#outputTable,#completeTable{
+    table-layout: fixed;
+    margin-left: 8px;
+ }
+#one{
+    color: beige;
+    font-family: ALEGRIAN;
+     text-align: center; 
+    margin-left: 8px;
+    }
+.headerbackground{background-color: rgb(1, 4, 10);}
+tr:nth-child(even){background-color:rgb(228, 231, 188);}
+tr:nth-child(odd){background-color:white;}
+#searchBox{
+    border: 2px solid black;
+    background-color: rgb(161, 159, 159);
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+#searchBox input,#searchBox select{
+    padding: 10px; 
+    border: 1px solid white; 
+    background-color:white;
+    height: 40px;
+}
+#searchButton,#clearButton{
+      color: white;
+      height: 40px;
+      padding: 0 20px; 
+      border:none;
+}
+#searchForm{flex-wrap: wrap;display: flex;}
+#outputTable th,#outputTable td,#completeTable th,#completeTable td{border: none;}
+#filterButton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 30px;
+            color: white;
+            margin-right: 10px;
+            text-decoration: none;
+            border: none;
+}

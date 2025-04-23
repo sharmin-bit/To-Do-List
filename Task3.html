@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="Task3.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body id="myTask">
+        <div class="headerbackground d-flex justify-content-between align-items-center"  style="padding: 6px;">
+            <h1 id="one" style="margin-left: 6px" class="ms-2">To-Do List</h1>
+            <div class="button-group d-flex align-items-center me-2">
+            <button type="submit" onclick="showform()" id="filterButton" class="me-2 bg-primary"><i class="fa fa-filter"></i></button>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mymodal" id="addButton">Add</button>
+        </div>
+    </div>
+        <div id="searchBox"> 
+            <form id="searchForm" style="display: none;" class="d-flex justify-content-between align-items-center">
+               <label style="padding:0px; margin-right:15px;" >
+                <b>Id      </b>
+                 <input type="text" placeholder="Enter Id" id="searchID" class="me-5 ms-2" style="width: 320px;border-radius:4px ;">
+            </label>
+               <label style="padding: 10px; margin-left:3px; font-size: medium;">
+               <b>Task      </b><input type="text" class="me-5 ms-2" style="width: 320px;border-radius:4px;" placeholder="Enter Task-Name" id="searchNAME">
+            </label>
+               <label style="padding: 10px; margin-left:3px; font-size: medium;"><b>Status     </b>
+                      <select name="search" id="search" style="width:320px; border-radius:4px; ">
+                        <option value="All">ALL</option>
+                        <option value="Pending">PENDING</option>
+                        <option value="Completed">COMPLETED</option>
+                     </select>
+               </label>
+               <div style="margin-top: 8px; padding-left: 1125px;">
+               <button type="submit" id="searchButton" onclick="searchTASK(event)" class="btn btn-success me-2">Search</button>
+               <button id="clearButton" onclick="clearTASK()" class="btn btn-danger">Clear</button>
+            </div>
+            </form>
+            </div>
+    <table class="table table-bordered" id="outputTable" >
+        <tr>
+           <th colspan="6" class="ps-0"style="font-size: 22px;font-weight: 650;"><div id="count" style="padding-left:0px; margin-left: 0px;"></div></th>
+        </tr>
+        <tr>
+            <th>Sr No</th>
+            <th>Id</th>
+            <th>Task</th>
+            <th>Created On</th>
+            <th>Modified On</th>
+            <th>Actions</th>
+            <tbody id="tableBody"></tbody>
+        </tr>
+    </table>
+    <table class="table table-bordered" id="completeTable">
+        <tr>
+            <th colspan="4" class="ps-0"style="font-size: 22px;font-weight: 650;" style="padding-left:0px; margin-left: 0px;"><div id="count1"></div></th>
+        </tr>
+        <tr>
+            <th>Sr No</th>
+            <th>Id</th>
+            <th>Task</th>
+            <th>Created On</th>
+            <th>Modified On</th>
+            <th>Completed On</th>
+            <tbody id="table1Body"></tbody>
+        </tr>
+    </table>
+    <!---Modal!!-->
+    <div class="container mt-5">
+         <div class="modal" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="font-size: 22px;font-weight: 500;">Add Task</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="id" style="padding-right:13px;">Id</label>
+                            <input type="number" class="id" id="task-id" placeholder="Add Task-Id">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Task</label>
+                            <input type="text" class="form-label" id="task-name" placeholder="Add Task-Name">
+                        </div>
+                    </form>  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onclick="addTask()" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </button>
+     </div><br>
+      <!---Modal!!-->
+      <div class="container mt-5">
+          <div class="modal" id="editmodal">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>EDIT TASK</h1>
+                        <button type="btn" class="btn btn-close" data-bs-dismiss="modal"></button> 
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Task</label>
+                                <input type="text" class="form-label" id="editTask-name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="id">Id</label>
+                                <input type="number" class="id" id="editTask-id" readonly>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="update()" data-bs-dismiss="modal">UPDATE</button>
+                          </div>
+                    </div>
+                 </div>
+             </div>
+          </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="Task3_1.js"></script>
+</body>
+</html>
